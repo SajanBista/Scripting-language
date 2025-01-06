@@ -1,0 +1,58 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>using alter box</title>
+    <script src = "external.js"></script>
+</head>
+<body>
+    <p> click the button below to save the information</p>
+    <button onclick="myFunction()"> click me</button>
+    <button onclick="consoleFunction()"> hehe</button>
+</body>
+</html>
+-->
+
+<!-- Variable decleration  -->
+ <!--variable in js is declared by using var key word-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>varialble decleartion in js </title>
+</head>
+<body>
+    <p> click the button below</p>
+    <button onclick="variable()">click to know who i am</button>
+    <script src = "external.js"></script>
+    
+</body>
+</html>-->
+<!--and its scope of js is global and local-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Making Function and Learning the Scope of Variables
+        </title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var username = "ram";
+
+            function myFunction() {
+                username = "sajan"; 
+                document.write(username);
+            }
+
+            function showUsername() {
+                alert(username); 
+            }
+
+            myFunction();
+            showUsername();
+        </script>
+    </body>
+</html>

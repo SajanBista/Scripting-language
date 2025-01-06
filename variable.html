@@ -1,0 +1,92 @@
+<!--<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Making Function and Learning the Scope of Variables
+        </title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var username = "ram";
+
+            function myFunction() {
+                username = "sajan"; 
+                document.write(username);
+            }
+
+            function showUsername() {
+                alert(username); 
+            }
+
+            myFunction();
+            showUsername();
+        </script>
+    </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>control statement</title>
+</head>
+<body>
+    <script type ="text/javascript">
+        var name =prompt("enter your username to enter the page");
+        if(name=="sajan"){
+            document.write("welcome to the page");
+        }
+        else{
+            document.write("invalid user");
+        }
+    </script>
+    
+</body>
+</html>-->
+<!-- switch statement-->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this is the switch statement</title>
+ </head>
+ <body>
+        <script type ="text/javascript">
+
+             n = prompt(" enter the number which table you want to print out between 1 to 5");
+             switch(n){
+                case"1":
+                for(i=1;i<=10;i++){
+                    document.write(n + "*" + i + "=" + (n * i) + "<br>");
+                }
+                break;
+                case"2":
+                for(i=1;i<=10;i++){
+                    document.write(n + "*" + i + "=" + (n * i) + "<br>");
+                }
+                break;
+                case"3":
+                for(i=1;i<=10;i++){
+                    document.write(n + "*" + i + "=" + (n * i) + "<br>");
+                }
+                break;
+                case"4":
+                for(i=1;i<=10;i++){
+                    document.write(n + "*" + i + "=" + (n * i) + "<br>");
+                }
+                break;
+                case"5":
+                for(i=1;i<=10;i++){
+                    document.write(n + "*" + i + "=" + (n * i) + "<br>");
+                }
+                break;
+                default:
+                document.write("invalid number");
+             }
+        </script>
+
+    
+ </body>
+ </html>

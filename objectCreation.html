@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <titile>object creation for js </titile>
+    </head>
+    <body>
+        <h1> creating object using literal</h1>
+        <p id="info"></p>
+        <p id ="info2"></p>
+        <script>
+        var info ={};
+        info.name = "ram";
+        info.age= 50;
+        info.address = "kathmandu";
+
+        document.getElementById("info").innerHTML = info.name+"is from"+info.address+"and is"+ info.age +"years old";
+    </script>
+    <h2> creating object using constructor</h2>
+
+    <script>
+        const student = new Object();
+        student.name = "shyam";
+        student.age = 20;
+        student.address = "bhaktapur";
+        student.displayInfo = function(){
+            document.getElementById("info2").innerHTML = student.name+"is from"+student.address+"and is"+ student.age +"years old";
+        }
+        student.displayInfo();
+        var today = new Date();
+        document.write(today);
+        </script>
+    </body>
+</html>

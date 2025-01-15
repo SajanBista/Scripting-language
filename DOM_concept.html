@@ -1,0 +1,64 @@
+<!--- getElementById
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>get element by id</title>
+</head>
+<body>
+    <h2> document object getElementById</h2>
+    <p id="info"></p>
+    <script type = "text/javascript">
+        //using getElementById find by element id
+        var info = document.getElementById("info");
+        info.innerHTML = "this is the dom by using getElementById";
+    </script>
+</body>
+</html>
+-->
+
+<!--- getElementByName
+<html>
+    <head>
+        <title>Get Element by Name</title>
+    </head>
+    <body>
+        <script>
+            function checkBCA() {
+                var bca = document.getElementsByName("course");
+                if (bca[1].checked) {
+                    alert("BCA is selected");
+                } else {
+                    alert("BCA is not selected");
+                }
+            }
+        </script>
+        <h2>Select a course</h2>
+        <input type="radio" name="course" value="csit">CSIT<br>
+        <input type="radio" name="course" value="bca">BCA<br>
+        <button onclick="checkBCA()">Check</button>
+    </body>
+</html>
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Get Element by Tag Name</title>
+    </head>
+    <body>
+        <p class="test">Hello 1</p>
+        <p class="test">Hello 2</p>
+        <p class="test">Hello 3</p>
+        <button onclick="changeText()">Change All Text</button>
+
+        <script>
+            function changeText() {
+                var elements = document.getElementsByClassName('test');
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].innerHTML = "Updated Text " + (i + 1);
+                }
+            }
+        </script>
+    </body>
+</html>

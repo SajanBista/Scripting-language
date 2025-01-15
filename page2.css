@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#age-selection {
+    margin-top: 20px;
+}
+
+#toy-display {
+    margin-top: 20px;
+}
+
+.toy-card {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 200px;
+}
+
+.toy-image {
+    width: 100%;
+}
+
+.toy-name {
+    font-weight: bold;
+}
+
+.toy-price {
+    color: green;
+}
+
+.toy-rating {
+    font-size: 12px;
+}
+
+.add-to-cart {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}

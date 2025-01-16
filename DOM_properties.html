@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>innerText vs innerHTML</title>
+</head>
+<body>
+    <div id="example">
+        <p>Hello <strong>World</strong></p>
+        <p style="display: none;">Hidden Text</p>
+    </div>
+    <script>
+        var div = document.getElementById("example");
+        console.log("innerText: ", div.innerText); // Visible text only
+        console.log("innerHTML: ", div.innerHTML); // Includes HTML tags
+    </script>
+</body>
+</html>

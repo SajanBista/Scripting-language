@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GET vs POST Example</title>
+</head>
+<body>
+  <h1>GET vs POST Example</h1>
+  <button id="getButton">Make GET Request</button>
+  <button id="postButton">Make POST Request</button>
+,mnbv 
+ 9
+  <script>
+    // GET Request Example
+    document.getElementById('getButton').addEventListener('click', () => {
+      fetch('https://jsonplaceholder.typicode.com/posts/1', {
+        method: 'GET',
+      })
+        .then(response => response.json())
+        .then(data => console.log('GET Response:', data))
+        .catch(error => console.error('Error:', error));
+    });
+
+    // POST Request Example
+    document.getElementById('postButton').addEventListener('click', () => {
+      fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: 'foo',
+          body: 'bar',
+          userId: 1,
+        }),
+      })
+        .then(response => response.json())
+        .then(data => console.log('POST Response:', data))
+        .catch(error => console.error('Error:', error));
+    });
+  </script>
+</body>
+</html>

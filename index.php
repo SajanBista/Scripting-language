@@ -1,42 +1,13 @@
 <?php
-
 include 'include/connect.php';
-session_start();
 
-if (isset($_SESSION['user_id'])) {
+session_start();
+if (isset($_POST['user_id'])) {
     $user_id = $_SESSION['user_id'];
 } else {
     $user_id = '';
 }
 
-
-if (isset($_POST['send'])) {
-    $name = isset($_POST['name']) ? htmlspecialchars(trim($_POST['name'])) : '';
-    $email = isset($_POST['email']) ? htmlspecialchars(trim($_POST['email'])) : '';
-    $number = isset($_POST['number']) ? htmlspecialchars(trim($_POST['number'])) : '';
-    $msg = isset($_POST['msg']) ? htmlspecialchars(trim($_POST['msg'])) : '';
-
-    $query = "SELECT * FROM `messages` WHERE name='$name' and email='$email' and number='$number' and messages='$msg'";
-    $result = mysqli_query($conn, $query);
-
-    if ($result && $result->num_rows > 0) {
-        echo "Message already sent";
-    } else {
-        $query = "INSERT INTO `messages` (user_id, name, email, number, messages) VALUES ('$user_id','$name', '$email', '$number','$msg')";
-
-        if (mysqli_query($conn, $query)) {
-            echo "<script type='text/javascript'>
-                  alert('Message Sent.');
-                  
-                  </script>";
-        } else {
-            echo "<script type='text/javascript'>
-                  alert('Not Sent.');
-                  
-                  </script>";
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +17,7 @@ if (isset($_POST['send'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <title>Home</title>
 
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
 
@@ -63,31 +34,33 @@ if (isset($_POST['send'])) {
 
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">Eco-Planet</a>
+            <a class="navbar-brand" href="index.php">Hike Gear Nepal</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-center align-items-center" id="navbarNav">
                 <ul class="navbar-nav nav ms-">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="about.php">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="order.php">Orders</a>
+                        <a class="nav-link" href="order.php">Rents</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="shop.php">Blog</a>
+                        <!-- <a class="nav-link" href="blog.php">Blog</a> -->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="contact.php">Contact</a>
+                        <a class="nav-link" href="contact.php">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -97,6 +70,7 @@ if (isset($_POST['send'])) {
                 <input class="form-control me-2 search-input" type="search" name="search_box" placeholder="Search" aria-label="Search" maxlength="100" required>
                 <button class="btn btn-outline-success btn-search" type="submit" name="search_btn">Search</button>
             </form>
+
             <div class="icon">
                 <a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
                 <a href="wishlist.php"><i class="fa-solid fa-heart"></i></a>
@@ -105,34 +79,108 @@ if (isset($_POST['send'])) {
         </div>
     </nav>
 
-    <form action="contact.php" method="POST">
-        <div class="contact-us">
-            <div class="contact">
-                <p class="in-touch">Keep in touch with us</p>
-
-                <div class="full-input">
-                    <div class="input">
-                        <input type="text" name="name" placeholder="Your Full Name" required>
-
-                        <input type="email" name="email" placeholder="Your Email Address" required>
-
-                        <input type="tel" id="mobile" name="number" placeholder="Your Mobile Number" min="0" max="9999999999" title="Please enter a valid 10 digit mobile number" required onkeypress="if(this.value.length==10) return false;" class="box">
-
-                        <!-- Checkbox with a label -->
-                        <label for="terms">
-                            <input type="checkbox" id="terms" required>
-                            <span> I accept the terms & conditions and I understand that my data will be held securely in accordance with the privacy policy.</span>
-                        </label>
+    <div class="home-bg">
+        <section class="home">
+            <div class="home-slider">
+                <!-- <div class="swiper-wrapper"> -->
+                <div class="slide">
+                    <div class="image">
+                        <img src="images/banner/banner1.jpg" alt="" style="height: 50rem; object-fit: cover; width: 100%;">
                     </div>
+                    <div class="content">
+                        <span>Shop the latest Today</span>
+                        <!-- <h3>Sustainability starts at Home</h3> -->
+                        <!-- <a href="index.php" class="btn">Rent Now</a> -->
+                    </div>
+                </div>
+            </div>
+            <!-- </div> -->
+            <div class="swiper-pagination"></div>
+        </section>
+    </div>
 
-                    <textarea name="msg" placeholder="Your Message here..." required></textarea>
+    <section class="category">
+        <h1 class="heading">Shop by category</h1>
+        <div class="swiper category-slider">
+            <div class="swiper-wrapper">
+                <a href="category.php?name=Bamboo" class="swiper-slide slide" style="width: 217.6px; height:10rem;">
+                    <!-- <img src="images/categories/icon-1.png" alt=""> -->
+                    <h3>TENT</h3>
+                </a>
+
+                <a href="category.php?name=New Products" class="swiper-slide slide" style="width: 217.6px; height:10rem;">
+                    <!-- <img src="images/categories/icon-2.png" alt=""> -->
+                    <h3>New Product</h3>
+                </a>
+
+                <a href="category.php?name=Bamboo" class="swiper-slide slide" style="width: 217.6px; height:10rem;">
+                    <!-- <img src="images/categories/icon-1.png" alt=""> -->
+                    <h3>New Product</h3>
+                </a>
+
+                <a href="category.php?name=New Products" class="swiper-slide slide" style="width: 217.6px; height:10rem;">
+                    <!-- <img src="images/categories/icon-2.png" alt=""> -->
+                    <h3>New Product</h3>
+                </a>
+
+                <a href="category.php?name=Bamboo" class="swiper-slide slide" style="width: 217.6px; height:10rem;">
+                    <!-- <img src="images/categories/icon-1.png" alt=""> -->
+                    <h3>New Product</h3>
+                </a>
+
+                <a href="category.php?name=New Products" class="swiper-slide slide" style="width: 217.6px; height:10rem;">
+                    <!-- <img src="images/categories/icon-2.png" alt=""> -->
+                    <h3>New Product</h3>
+                </a>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <h1 class="heading">Latest products</h1>
+
+    <div class="box-container">
+
+        <?php
+
+        $query = "SELECT * FROM products LIMIT 6";
+        $result = mysqli_query($conn, $query);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            while ($fetch_product = mysqli_fetch_assoc($result)) {
+        ?>
+                <div class="boxs">
+                    <form action="cart.php" method="post" class="slides">
+                        <input type="hidden" name="pid" value="<?= htmlspecialchars($fetch_product['id']); ?>">
+                        <input type="hidden" name="name" value="<?= htmlspecialchars($fetch_product['name']); ?>">
+                        <input type="hidden" name="price" value="<?= htmlspecialchars($fetch_product['price']); ?>">
+                        <input type="hidden" name="image" value="<?= htmlspecialchars($fetch_product['image']); ?>">
+                        <!-- image  -->
+                        <img src="images/products/<?= htmlspecialchars($fetch_product['image']); ?>" alt="">
+
+                        <div class="name"><?= htmlspecialchars($fetch_product['name']); ?></div>
+
+                        <div class="flex">
+                            <div class="price">
+                                <span>Rs.</span><?= htmlspecialchars($fetch_product['price']); ?><span>/-</span>
+                            </div>
+                            <input type="number" name="qty" class="qty" min="1" max="99" onkeypress="if(this.value.length==2) return false;" value="1">
+                        </div>
+
+                        <input type="submit" value="Rent " class="btns" name="add_to_cart">
+                    </form>
+
                 </div>
 
-                <!-- Changed button to type 'submit' -->
-                <input type="submit" value="Submit" name="send">
-            </div>
-        </div>
-    </form>
+        <?php
+            }
+        } else {
+            echo '<p class="empty">No Produts Found.</p>';
+        }
+
+        ?>
+    </div>
+
 
     <footer class="bg-secondary text-center text-white">
 
@@ -160,10 +208,11 @@ if (isset($_POST['send'])) {
 
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             © 2020 Copyright:
-            <a class="text-white" href="https://mdbootstrap.com/">Hike Gear NEPAL</a>
+            <a class="text-white" href="https://mdbootstrap.com/">Hike gear Nepal</a>
         </div>
 
     </footer>
+
 
     <script src="js/script.js"></script>
 

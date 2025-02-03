@@ -1,42 +1,19 @@
 <?php
 
 include 'include/connect.php';
+
 session_start();
 
-if (isset($_SESSION['user_id'])) {
-    $user_id = $_SESSION['user_id'];
-} else {
-    $user_id = '';
+if (!isset($_SESSION['user_id'])) {
+    echo "<script>alert('You are not logged in.');
+    window.location.href='user_login.php';</script>";
+    exit;
 }
+$user_id = $_SESSION['user_id'];
 
+$query = "SELECT * FROM `orders` WHERE user_id='$user_id'";
+$result = mysqli_query($conn, $query);
 
-if (isset($_POST['send'])) {
-    $name = isset($_POST['name']) ? htmlspecialchars(trim($_POST['name'])) : '';
-    $email = isset($_POST['email']) ? htmlspecialchars(trim($_POST['email'])) : '';
-    $number = isset($_POST['number']) ? htmlspecialchars(trim($_POST['number'])) : '';
-    $msg = isset($_POST['msg']) ? htmlspecialchars(trim($_POST['msg'])) : '';
-
-    $query = "SELECT * FROM `messages` WHERE name='$name' and email='$email' and number='$number' and messages='$msg'";
-    $result = mysqli_query($conn, $query);
-
-    if ($result && $result->num_rows > 0) {
-        echo "Message already sent";
-    } else {
-        $query = "INSERT INTO `messages` (user_id, name, email, number, messages) VALUES ('$user_id','$name', '$email', '$number','$msg')";
-
-        if (mysqli_query($conn, $query)) {
-            echo "<script type='text/javascript'>
-                  alert('Message Sent.');
-                  
-                  </script>";
-        } else {
-            echo "<script type='text/javascript'>
-                  alert('Not Sent.');
-                  
-                  </script>";
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +23,7 @@ if (isset($_POST['send'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <title>Orders</title>
 
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
 
@@ -63,9 +40,16 @@ if (isset($_POST['send'])) {
 
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        .empty {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">Eco-Planet</a>
@@ -75,19 +59,19 @@ if (isset($_POST['send'])) {
             <div class="collapse navbar-collapse justify-content-center align-items-center" id="navbarNav">
                 <ul class="navbar-nav nav ms-">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                        <a class="nav-link " aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="about.php">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="order.php">Orders</a>
+                        <a class="nav-link active" href="order.php">Orders</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="shop.php">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="contact.php">Contact</a>
+                        <a class="nav-link" href="contact.php">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -97,6 +81,7 @@ if (isset($_POST['send'])) {
                 <input class="form-control me-2 search-input" type="search" name="search_box" placeholder="Search" aria-label="Search" maxlength="100" required>
                 <button class="btn btn-outline-success btn-search" type="submit" name="search_btn">Search</button>
             </form>
+
             <div class="icon">
                 <a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
                 <a href="wishlist.php"><i class="fa-solid fa-heart"></i></a>
@@ -105,34 +90,37 @@ if (isset($_POST['send'])) {
         </div>
     </nav>
 
-    <form action="contact.php" method="POST">
-        <div class="contact-us">
-            <div class="contact">
-                <p class="in-touch">Keep in touch with us</p>
+    <section class="orders">
+        <h1 class="heading">Placed Orders</h1>
 
-                <div class="full-input">
-                    <div class="input">
-                        <input type="text" name="name" placeholder="Your Full Name" required>
-
-                        <input type="email" name="email" placeholder="Your Email Address" required>
-
-                        <input type="tel" id="mobile" name="number" placeholder="Your Mobile Number" min="0" max="9999999999" title="Please enter a valid 10 digit mobile number" required onkeypress="if(this.value.length==10) return false;" class="box">
-
-                        <!-- Checkbox with a label -->
-                        <label for="terms">
-                            <input type="checkbox" id="terms" required>
-                            <span> I accept the terms & conditions and I understand that my data will be held securely in accordance with the privacy policy.</span>
-                        </label>
+        <div class="box-container">
+            <?php
+            if ($result && mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+                    <div class="box">
+                        <p>Name: <span><?= htmlspecialchars($row['name']); ?></span></p>
+                        <p>Email: <span><?= htmlspecialchars($row['email']); ?></span></p>
+                        <p>Number: <span><?= htmlspecialchars($row['number']); ?></span></p>
+                        <p>Address: <span><?= htmlspecialchars($row['address']); ?></span></p>
+                        <p>Payment Method: <span><?= htmlspecialchars($row['method']); ?></span></p>
+                        <p>Total Orders: <span><?= htmlspecialchars($row['total_products']); ?></span></p>
+                        <p>Total Price: <span><?= htmlspecialchars($row['total_price']); ?></span></p>
+                        <p>Payment Status: <span style="color: <?= $row['payment_status'] === 'pending' ? 'red' : 'green'; ?>;">
+                                <?= htmlspecialchars($row['payment_status']); ?></span></p>
                     </div>
-
-                    <textarea name="msg" placeholder="Your Message here..." required></textarea>
-                </div>
-
-                <!-- Changed button to type 'submit' -->
-                <input type="submit" value="Submit" name="send">
-            </div>
+            <?php
+                }
+            } else {
+                echo "<script type='text/javascript'>
+                alert('No orders placed.');
+                window.location.href='index.php';
+                </script>";
+            }
+            ?>
         </div>
-    </form>
+    </section>
+
 
     <footer class="bg-secondary text-center text-white">
 
@@ -160,22 +148,23 @@ if (isset($_POST['send'])) {
 
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             © 2020 Copyright:
-            <a class="text-white" href="https://mdbootstrap.com/">Hike Gear NEPAL</a>
+            <a class="text-white" href="https://mdbootstrap.com/">eco-planet.com</a>
         </div>
 
     </footer>
 
+
     <script src="js/script.js"></script>
 
     <script>
-        // var swiper = new Swiper(".home-slider", {
-        //     loop: true,
-        //     spaceBetween: 20,
-        //     pagination: {
-        //         el: ".swiper-pagination",
-        //         clickable: true,
-        //     },
-        // });
+        var swiper = new Swiper(".home-slider", {
+            loop: true,
+            spaceBetween: 20,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
 
         var swiper = new Swiper(".category-slider", {
             loop: true,
@@ -220,7 +209,6 @@ if (isset($_POST['send'])) {
             },
         });
     </script>
-
 </body>
 
 </html>

@@ -12,5 +12,5 @@ class Car
     }
 
 }
-$vehi = new car();
+$vehi = new car("hhhhhh");
 $vehi -> fun1();// function call method.

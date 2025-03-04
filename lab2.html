@@ -1,0 +1,49 @@
+<!-- 2) Insert 2 image and flip flop on click event.  --> 
+
+<!DOCTYPE html> 
+
+<html> 
+
+<head> 
+
+    <title>swaping  image places</title> 
+
+    <script> 
+
+        function swapImages() { 
+
+            const image1 = document.getElementById("image1"); 
+
+            const image2 = document.getElementById("image2"); 
+
+ 
+
+            const tempSrc = image1.src; 
+
+            image1.src = image2.src; 
+
+            image2.src = tempSrc; 
+
+        } 
+
+    </script> 
+
+</head> 
+
+<body> 
+
+    <div class="image-container"> 
+
+        <img id="image1" src="WhatsApp.jpg" alt="Image 1" style="height: 400px; width: 400px;" onclick="swapImages()"> 
+
+        <img id="image2" src="image2.jpg" alt="Image 2" style="height: 400px; width: 400px;" onclick="swapImages()"> 
+
+    </div> 
+
+</body> 
+
+</html> 
+
+ 
+
+ 

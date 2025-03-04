@@ -1,0 +1,90 @@
+
+ <!-- 3) Display 5 h1 content using for, while, do while loop.  --> 
+
+<!DOCTYPE html> 
+
+<html lang="en"> 
+
+<head> 
+
+    <meta charset="UTF-8"> 
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+    <title>Loop Display</title> 
+
+</head> 
+
+<body> 
+
+    <h2>Using for loop:</h2> 
+
+ <div id="for-loop"></div> 
+
+ 
+
+<h2>Using while loop:</h2> 
+
+    <div id="while-loop"></div> 
+
+ 
+
+    <h2>Using do while loop:</h2> 
+
+    <div id="do-while-loop"></div> 
+
+ 
+
+    <script> 
+
+        let forLoopDiv = document.getElementById("for-loop"); 
+
+        for (let i = 1; i <= 5; i++) { 
+
+            let h1 = document.createElement("h1"); 
+
+            h1.textContent = "i am ram who is ml engineer " + i; 
+
+            forLoopDiv.appendChild(h1); 
+
+        } 
+
+ 
+
+        let whileLoopDiv = document.getElementById("while-loop"); 
+
+        let j = 1; 
+
+        while (j <= 5) { 
+
+            let h1 = document.createElement("h1"); 
+
+            h1.textContent = "I am working " + j; 
+
+            whileLoopDiv.appendChild(h1); 
+
+            j++; 
+
+        } 
+
+        let doWhileLoopDiv = document.getElementById("do-while-loop"); 
+
+        let k = 1; 
+
+        do { 
+
+            let h1 = document.createElement("h1"); 
+
+            h1.textContent = "hey i love learning " + k; 
+
+            doWhileLoopDiv.appendChild(h1); 
+
+            k++; 
+
+        } while (k <= 5); 
+
+    </script> 
+
+</body> 
+
+</html> 

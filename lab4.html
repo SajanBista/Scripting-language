@@ -1,0 +1,63 @@
+<!-- 4) Create an array of 5  students, display more students in list view. Underline third student --> 
+
+<!DOCTYPE html> 
+
+<html lang="en"> 
+
+<head> 
+
+    <meta charset="UTF-8"> 
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+    <title>Students List</title> 
+
+</head> 
+
+<body> 
+
+    <h2>Student List</h2> 
+
+    <ul id="students-list"></ul> 
+
+ 
+
+    <script> 
+
+        var students = ["Jack", "Joe", "Hari", "Sita", "rita"]; 
+
+         
+
+        var listDiv = document.getElementById("students-list"); 
+
+ 
+
+        
+
+        for (var i = 0; i < students.length; i++) { 
+
+            var li = document.createElement("li"); 
+
+            li.textContent = students[i]; 
+
+            if (i === 2) { 
+
+                li.style.textDecoration = "underline"; 
+
+            } 
+
+ 
+
+            listDiv.appendChild(li); 
+
+        } 
+
+    </script> 
+
+</body> 
+
+</html> 
+
+ 
+
+ 

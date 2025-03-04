@@ -1,0 +1,83 @@
+<!--1) Create login form and apply   
+
+basic validation where user nama between 8-10 character 
+
+and password required.--> 
+
+ 
+
+<!DOCTYPE html> 
+
+<html> 
+
+<head> 
+
+    <title>Login Form Validation</title> 
+
+    <script> 
+
+        function validateForm() { 
+
+            const username = document.getElementById('username').value; 
+
+            const password = document.getElementById('password').value; 
+
+ 
+
+            if (username.length < 8 || username.length > 10) { 
+
+                alert('Username must be between 8 and 10 characters.'); 
+
+                return false; 
+
+            } 
+
+ 
+
+            if (!password) { 
+
+                alert('Password is required.'); 
+
+                return false; 
+
+            } 
+
+ 
+
+            return true; 
+
+        } 
+
+        function login() { 
+
+            alert('Login successful') 
+
+        } 
+
+    </script> 
+
+</head> 
+
+<body> 
+
+    <form onsubmit="return validateForm();"> 
+
+        <label for="username">Username:</label> 
+
+        <input type="text" id="username" name="username"> 
+
+        <br> 
+
+        <label for="password">Password:</label> 
+
+        <input type="password" id="password" name="password"> 
+
+        <br> 
+
+        <button onClick='login()' type="submit">Login</button> 
+
+    </form> 
+
+</body> 
+
+</html> 

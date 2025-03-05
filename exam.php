@@ -32,3 +32,4 @@ if (isset($_POST['delete_session'])) {
     <p>
         <strong>Session:</strong> 
         <?php echo is
+?>
